@@ -158,7 +158,7 @@ class Empresa
 				$arregloEmpresas= array();
 				while($empresa=$base->Registro()){
 					$objEmpresa= new Empresa();
-					$objEmpresa->buscar($empresa['idempresa']);
+					$objEmpresa->Buscar($empresa['idempresa']);
 					array_push($arregloEmpresas, $objEmpresa);
 				}
 		 	}

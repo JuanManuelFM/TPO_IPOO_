@@ -15,7 +15,7 @@ class Pasajero{
     private $apellido;
     private $documento;
     private $telefono;
-    private $Objviaje;
+    private $objViaje;
     private $mensajeFuncion;
 
 
@@ -25,15 +25,15 @@ class Pasajero{
         $this->apellido="";
         $this->documento="";
         $this->telefono="";
-        $this->Objviaje='';
+        $this->objViaje='';
     }
 
-    public function cargar($nombre, $apellido, $documento, $telefono, $Objviaje){
+    public function cargar($nombre, $apellido, $documento, $telefono, $objViaje){
         $this->setNombre($nombre);
         $this->setApellido($apellido);
         $this->setDocumento($documento);
         $this->setTelefono($telefono);
-        $this->setObjviaje($Objviaje);
+        $this->setObjViaje($objViaje);
     }
 
     public function setNombre($nombre){
@@ -48,8 +48,8 @@ class Pasajero{
     public function setTelefono($telefono){
         $this->telefono = $telefono;
     }
-    public function setObjviaje($Objviaje){
-        $this->Objviaje = $Objviaje;
+    public function setObjViaje($objViaje){
+        $this->objViaje = $objViaje;
     }
     public function setMensajeFuncion($mensajeFuncion){
         $this->mensajeFuncion = $mensajeFuncion;
@@ -67,8 +67,8 @@ class Pasajero{
     public function getTelefono(){
         return $this->telefono;
     }
-    public function getObjviaje(){
-        return $this->Objviaje;
+    public function getObjViaje(){
+        return $this->objViaje;
     }
     public function getMensajeFuncion(){
         return $this->mensajeFuncion;
@@ -95,7 +95,7 @@ class Pasajero{
 		$consulta= "INSERT INTO pasajero (rdocumento, pnombre, papellido, ptelefono, idviaje) VALUES ('".$this->getDocumento()."', '".$this->getNombre()."',
         '".$this->getApellido()."',
         '".$this->getTelefono()."',
-        '".$this->getObjviaje()->getIdviaje()."')"; 
+        '".$this->getObjViaje()->getIdviaje()."')"; 
 		if($base->Iniciar()){
 			    if($base->Ejecutar($consulta)){
 			        $resp=  true;
@@ -121,7 +121,7 @@ class Pasajero{
     getApellido
     getDocumento
     getTelefono
-    getObjviaje
+    getobjViaje
     getMensajeFuncion
 
     */
@@ -135,7 +135,7 @@ class Pasajero{
          papellido= '".$this->getApellido()."',
          ptelefono= '".$this->getTelefono()."',
          rdocumento= '".$this->getDocumento()."',
-         idviaje = ".$this->getObjviaje()->getIdviaje()."
+         idviaje = ".$this->getObjViaje()->getIdviaje()."
          WHERE rdocumento= ". $this->getDocumento();
 		if($base->Iniciar()){
 			if($base->Ejecutar($consulta)){
@@ -162,7 +162,7 @@ class Pasajero{
     getApellido
     getDocumento
     getTelefono
-    getObjviaje
+    getobjViaje
     getMensajeFuncion
 
     */
@@ -180,7 +180,7 @@ class Pasajero{
 					$this->setTelefono($pasajero['ptelefono']);
                     $objViaje = new Viaje();
                     $objViaje->Buscar($pasajero['idviaje']);
-                    $this->setObjviaje($objViaje);
+                    $this->setObjViaje($objViaje);
 					$resp= true;
 				}				
 		 	}
@@ -205,7 +205,7 @@ class Pasajero{
     getApellido
     getDocumento
     getTelefono
-    getObjviaje
+    getobjViaje
     getMensajeFuncion
 
     */
@@ -223,7 +223,7 @@ class Pasajero{
 				$arregloPasajeros= array();
 				while($pasajero=$base->Registro()){
 					$objPasajero= new Pasajero();
-					$objPasajero->buscar($pasajero['rdocumento']);
+					$objPasajero->Buscar($pasajero['rdocumento']);
 					array_push($arregloPasajeros,$objPasajero);
 				}
 		 	}
@@ -266,7 +266,7 @@ class Pasajero{
     getApellido
     getDocumento
     getTelefono
-    getObjviaje
+    getobjViaje
     getMensajeFuncion
 
     */
@@ -276,7 +276,7 @@ class Pasajero{
             "Nombre del pasajero: ".$this->getNombre().
             "\n Apellido del pasajero: ".$this->getApellido().
             "\n Documento del pasajero: ".$this->getDocumento().
-            "\n Codigo del viaje: ".$this->getObjviaje()->getIdviaje().
+            "\n Codigo del viaje: ".$this->getObjViaje()->getIdviaje().
             "\n El telefono del pasajero es: ".$this->getTelefono());
 	}
 }

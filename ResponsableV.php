@@ -187,7 +187,7 @@ class ResponsableV{
 				$arregloResponsables= array();
 				while($responsable=$base->Registro()){
 					$objResponsable= new ResponsableV();
-					$objResponsable->buscar($responsable['rnumeroempleado']);
+					$objResponsable->Buscar($responsable['rnumeroempleado']);
 					array_push($arregloResponsables, $objResponsable);
 				}
 		 	}
