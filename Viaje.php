@@ -48,37 +48,6 @@ class Viaje{
         $this->setIdayvuelta($idayvuelta);
     }
 
-    public function getIdviaje(){
-        return $this->idviaje;
-    }
-    public function getDestino(){
-        return $this->destino;
-    }
-    public function getCantMaxPasajeros(){
-        return $this->cantMaxPasajeros;
-    }
-    public function getObjEmpresa(){
-        return $this->objEmpresa;
-    }
-    public function getObjResponsable(){
-        return $this->objResponsable;
-    }
-    public function getImporte(){
-        return $this->importe;
-    }
-    public function getTipoAsiento(){
-        return $this->tipoAsiento;
-    }
-    public function getIdayvuelta(){
-        $this->idayvuelta;
-    }
-    public function getColeccionPasajeros(){
-        $this->coleccionPasajeros;
-    }
-    public function getMensajeFuncion(){
-        $this->mensajeFuncion;
-    }
-
     public function SetIdviaje($idviaje){
         $this->idviaje = $idviaje;
     }
@@ -110,6 +79,36 @@ class Viaje{
         $this->mensajeFuncion = $mensajeFuncion;
     }
 
+    public function getIdviaje(){
+        return $this->idviaje;
+    }
+    public function getDestino(){
+        return $this->destino;
+    }
+    public function getCantMaxPasajeros(){
+        return $this->cantMaxPasajeros;
+    }
+    public function getObjEmpresa(){
+        return $this->objEmpresa;
+    }
+    public function getObjResponsable(){
+        return $this->objResponsable;
+    }
+    public function getImporte(){
+        return $this->importe;
+    }
+    public function getTipoAsiento(){
+        return $this->tipoAsiento;
+    }
+    public function getIdayvuelta(){
+        $this->idayvuelta;
+    }
+    public function getColeccionPasajeros(){
+        $this->coleccionPasajeros;
+    }
+    public function getMensajeFuncion(){
+        $this->mensajeFuncion;
+    }
     /*
     idviaje-vdestino-vcantmaxpasajeros-idempresa
     rnumeroempleado-vimporte-tipoAsiento-idayvuelta

@@ -34,22 +34,6 @@ class ResponsableV{
         $this->setApellido($apellido);
     }
 
-    public function getNumEmpleado(){
-        return $this->numEmpleado;
-    }
-    public function getNumLicencia(){
-        return $this->numLicencia;
-    }
-    public function getNombre(){
-        return $this->nombre;
-    }
-    public function getApellido(){
-        return $this->apellido;
-    }
-    public function getMensajeFuncion(){
-        $this->mensajeFuncion;
-    }
-
     public function setNumEmpleado($numEmpleado){
         $this->numEmpleado = $numEmpleado;
     }
@@ -64,6 +48,22 @@ class ResponsableV{
     }
     public function setMensajeFuncion($mensajeFuncion){
         $this->mensajeFuncion = $mensajeFuncion;
+    }
+
+    public function getNumEmpleado(){
+        return $this->numEmpleado;
+    }
+    public function getNumLicencia(){
+        return $this->numLicencia;
+    }
+    public function getNombre(){
+        return $this->nombre;
+    }
+    public function getApellido(){
+        return $this->apellido;
+    }
+    public function getMensajeFuncion(){
+        $this->mensajeFuncion;
     }
 
     public function insertar(){

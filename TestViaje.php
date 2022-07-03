@@ -33,44 +33,104 @@ function menuInicio() {
         echo"2) :--------Sobre un Responsable--------: \n";
         echo"3) :---------Sobre los pasajeros--------: \n";
         echo"4) :----------Sobre los viajes----------: \n";
-        $opcion = solicitarNumeroEntre($minimo, $maximo);
-        // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
-    return $opcion;
+        $opcionI = solicitarNumeroEntre($minimo, $maximo);
+        // Function solicitarNumeroEntre($min, $max)
+    return $opcionI;
 }
 
+function menuCategoriasEmpresa(){
+    $minimo = 1;
+    $maximo = 5;
+        echo"1) :--------Agregar una empresa---------: \n";
+        echo"2) :-------Modificar una empresa--------: \n";
+        echo"3) :---------Buscar una empresa---------: \n";
+        echo"4) :--------Listar una empresa----------: \n";
+        echo"5) :--------Eliminar una empresa--------: \n";
+        $opcionE = solicitarNumeroEntre($minimo, $maximo);
+        // Function solicitarNumeroEntre($min, $max)
+    return $opcionE;
+}
+
+function menuCategoriasResponsable(){
+    $minimo = 1;
+    $maximo = 5;
+        echo"1) :-------Agregar un responsable-------: \n";
+        echo"2) :------Modificar un responsable------: \n";
+        echo"3) :-------Buscar un responsable--------: \n";
+        echo"4) :-------Listar un responsable--------: \n";
+        echo"5) :------Eliminar un responsable-------: \n";
+        $opcionR = solicitarNumeroEntre($minimo, $maximo);
+        // Function solicitarNumeroEntre($min, $max)
+    return $opcionR;
+}
+
+function menuCategoriasPasajero(){
+    $minimo = 1;
+    $maximo = 5;
+        echo"1) :--------Agregar un pasajero---------: \n";
+        echo"2) :-------Modificar un pasajero--------: \n";
+        echo"3) :--------Buscar un pasajero----------: \n";
+        echo"4) :--------Listar un pasajero----------: \n";
+        echo"5) :-------Eliminar un pasajero---------: \n";
+        $opcionP = solicitarNumeroEntre($minimo, $maximo);
+        // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
+    return $opcionP;
+}
+
+function menuCategoriasViaje(){
+    $minimo = 1;
+    $maximo = 5;
+        echo"1) :----------Agregar un viaje----------: \n";
+        echo"2) :---------Modificar un viaje---------: \n";
+        echo"3) :----------Buscar un viaje-----------: \n";
+        echo"4) :----------Listar un viaje-----------: \n";
+        echo"5) :---------Eliminar un viaje----------: \n";
+        $opcionV = solicitarNumeroEntre($minimo, $maximo);
+        // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
+    return $opcionV;
+}
+
+/* echo "****************************************** \n";
+echo ">--Ingrese numero de codigo del viaje: ";
+$unCodigo=strtoupper(trim(fgets(STDIN)));
+echo ">--Ingrese el destino: ";
+$unDestino=strtoupper(trim(fgets(STDIN)));
+echo ">--Ingrese cantidad de pasajeros: ";
+$pasajeros=trim(fgets(STDIN));
+echo "****************************************** \n";
+$viaje= new Viaje($unCodigo, $unDestino, $pasajeros);
+
+for($j = 0; $j < $pasajeros; $j++){
+    if ($j <= $pasajeros){
+        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \n";
+        echo "ingrese nombre de nuevo pasajero: ";
+        $nombrePasajero=strtoupper(trim(fgets(STDIN)));
+        echo "Ingrese apellido de pasajero: ";
+        $apellidoPasajero=strtoupper(trim(fgets(STDIN)));
+        echo "Ingrese telefono de pasajero: ";
+        $telefonoPasajero=strtoupper(trim(fgets(STDIN)));
+        echo "Ingrese documento de pasajero: ";
+        $numeroDocumento=strtoupper(trim(fgets(STDIN)));
+        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \n";
+        $pasajero= new Pasajeros($nombrePasajero, $apellidoPasajero, $telefonoPasajero, $numeroDocumento);
+        $pasajerosRegistrados[$j]=$pasajero;
+    }
+}
+$viaje->setColeccionPasajeros($pasajerosRegistrados);
+$nuevaPosicionViaje=count($viajesRealizados);
+$viajesRealizados[$nuevaPosicionViaje]=$viaje;
+ */
 do{
     $opcion = menuInicio();
-    switch ($opcion) {
+    switch ($opcion){
         case 1: 
-                echo "****************************************** \n";
-                echo ">--Ingrese numero de codigo del viaje: ";
-                $unCodigo=strtoupper(trim(fgets(STDIN)));
-                echo ">--Ingrese el destino: ";
-                $unDestino=strtoupper(trim(fgets(STDIN)));
-                echo ">--Ingrese cantidad de pasajeros: ";
-                $pasajeros=trim(fgets(STDIN));
-                echo "****************************************** \n";
-                $viaje= new Viaje($unCodigo, $unDestino, $pasajeros);
-                
-                for($j = 0; $j < $pasajeros; $j++){
-                    if ($j <= $pasajeros){
-                        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \n";
-                        echo "ingrese nombre de nuevo pasajero: ";
-                        $nombrePasajero=strtoupper(trim(fgets(STDIN)));
-                        echo "Ingrese apellido de pasajero: ";
-                        $apellidoPasajero=strtoupper(trim(fgets(STDIN)));
-                        echo "Ingrese telefono de pasajero: ";
-                        $telefonoPasajero=strtoupper(trim(fgets(STDIN)));
-                        echo "Ingrese documento de pasajero: ";
-                        $numeroDocumento=strtoupper(trim(fgets(STDIN)));
-                        echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ \n";
-                        $pasajero= new Pasajeros($nombrePasajero, $apellidoPasajero, $telefonoPasajero, $numeroDocumento);
-                        $pasajerosRegistrados[$j]=$pasajero;
-                    }
+                //Menu EMPRESAS
+                $OpcionEmpresa= menuCategoriasEmpresa();
+                switch ($OpcionEmpresa){
+                    case 1: //Agregar una EMPRESA
+                        echo "Ingrese el nombre de la empresa: ";
+                        $
                 }
-                $viaje->setColeccionPasajeros($pasajerosRegistrados);
-                $nuevaPosicionViaje=count($viajesRealizados);
-                $viajesRealizados[$nuevaPosicionViaje]=$viaje;
         break;
         case 2: 
             $buscar= true;
@@ -163,79 +223,5 @@ do{
                 }
             }
         break;
-        case 5: 
-            echo "****************************************** \n";
-            echo "Ingrese el documento de la persona cuyos datos quiera modificar: ";
-            $dniPasajeroPrevio=strtoupper(trim(fgets(STDIN)));
-            $listaDePasajeros= $viajeEjemplo->getColeccionPasajeros();
-            //BUSCA SI EL PASAJERO EXISTE
-            $posColPasajero= $viajeEjemplo->buscarPasajero($dniPasajeroPrevio);
-            if($posColPasajero== -1){
-                 echo "No se encontró al pasajero";
-            }
-            else{
-            echo "ingrese nuevamente el nombre del pasajero: ";
-            $nombrePasajero1=strtoupper(trim(fgets(STDIN)));
-            echo "Ingrese nuevamente el apellido del pasajero: ";
-            $apellidoPasajero1=strtoupper(trim(fgets(STDIN)));
-            echo "Ingrese nuevamente el telefono del pasajero: ";
-            $telefonoPasajero1=strtoupper(trim(fgets(STDIN)));
-            echo "Ingrese nuevamente el DNI del pasajero: ";
-            $dniPasajeroNuevo=strtoupper(trim(fgets(STDIN)));
-            echo "****************************************** \n";
-            
-            $viajeEjemplo->modificarPasajero($posColPasajero, $nombrePasajero1, $apellidoPasajero1, $telefonoPasajero1);
-            echo "Los datos se modificaron con exito";
-            echo $viajeEjemplo;
-            }
-            
-            //Modificar datos de un pasajero (VIEJO QUE HABIA CREADO)
-            /* $buscar= true;
-             * $i=0;
-             * $pasajeros=$pasajerosRegistrados;
-             * echo "****************************************** \n";
-             * echo "Ingrese el documento de la persona cuyo nombre,  * apellido y/o telefono quiera modificar: ";
-             * $documentoPasajero1=strtoupper(trim(fgets(STDIN)));
-             * while($i < count($pasajerosRegistrados) && $buscar){
-             *     $documentoEncontrar=$pasajerosRegistrados[$i]->getDocumento();
-             *     if($documentoEncontrar == $documentoPasajero1){
-             *         $buscar= false;
-             *         echo "ingrese nuevamente el nombre del pasajero: ";
-             *         $nombrePasajero1=strtoupper(trim(fgets(STDIN)));
-             *         $pasajerosRegistrados[$i]->setNombre($nombrePasajero1);
-             *         echo "Ingrese nuevamente el apellido del pasajero: ";
-             *         $apellidoPasajero1=strtoupper(trim(fgets(STDIN)));
-             *         $pasajerosRegistrados[$i]->setApellido($apellidoPasajero1);
-             *         echo "Ingrese nuevamente el telefono del pasajero: ";
-             *         $telefonoPasajero1=strtoupper(trim(fgets(STDIN)));
-             *         $pasajerosRegistrados[$i]->setTelefono($telefonoPasajero1);
-             *         echo "****************************************** \n";
-             *      }
-             *      $i++;
-             * }
-            */
-        break;
-
-        case 6: 
-            echo "****************************************** \n";
-            /**for ($i=0; $i < count($viajesRealizados); $i++){
-                //$miViaje= $viajesRealizados[$i];
-                echo $viajesRealizados[$i];
-            }
-            */
-            $viajesRealizados; 
-            $datosViajes="";
-            foreach($viajesRealizados as $objViajes){
-                //$viajesString=$viajes->__toString();
-                $datosViajes=$datosViajes . "\n" . $objViajes . "\n";
-        }
-            echo $datosViajes;
-            echo "****************************************** \n";
-        break;
-        case 7: 
-            echo "****************************************** \n";
-            echo "Clases creadas pero aún no implementadas \n";
-            echo "****************************************** \n";
-        break;
     }
-} while (($opcion <= 7) && ($opcion >= 1));
+} while (($opcion <= 4) && ($opcion >= 1));

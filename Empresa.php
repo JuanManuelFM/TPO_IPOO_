@@ -31,6 +31,19 @@ class Empresa
         $this->setDireccionEmpresa($direccionEmpresa);
     }
 
+	public function setIdempresa($idempresa){
+        $this->idempresa = $idempresa;
+    }
+    public function setNombreEmpresa($nombreEmpresa){
+        $this->nombreEmpresa = $nombreEmpresa;
+    }
+    public function setDireccionEmpresa($direccionEmpresa){
+        $this->direccionEmpresa = $direccionEmpresa;
+    }
+    public function setMensajeFuncion($mensajeFuncion){
+        $this->mensajeFuncion = $mensajeFuncion;
+    }
+
     public function getIdempresa(){
         return $this->idempresa;
     }
@@ -42,20 +55,6 @@ class Empresa
     }
     public function getMensajeFuncion(){
         return $this->mensajeFuncion;
-    }
-
-
-    public function setIdempresa($idempresa){
-        $this->idempresa = $idempresa;
-    }
-    public function setNombreEmpresa($nombreEmpresa){
-        $this->nombreEmpresa = $nombreEmpresa;
-    }
-    public function setDireccionEmpresa($direccionEmpresa){
-        $this->direccionEmpresa = $direccionEmpresa;
-    }
-    public function setMensajeFuncion($mensajeFuncion){
-        $this->mensajeFuncion = $mensajeFuncion;
     }
 
     public function insertar(){
