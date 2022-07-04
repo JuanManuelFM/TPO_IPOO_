@@ -20,7 +20,7 @@ class Empresa
 
     public function __construct()
     {
-        $this->idempresa=0;
+        $this->idempresa="";
         $this->nombreEmpresa="";
         $this->direccionEmpresa="";
     }
@@ -60,7 +60,7 @@ class Empresa
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$consulta= "INSERT INTO empresa VALUES ('".$this->getIdempresa()."', '".$this->getNombreEmpresa()."', '".$this->getDireccionEmpresa()."')"; 
+		$consulta= "INSERT INTO empresa VALUES ('".$this->getNombreEmpresa()."', '".$this->getDireccionEmpresa()."')"; 
 		if($base->Iniciar()){
 			    if($base->Ejecutar($consulta)){
 			        $resp=  true;
@@ -119,7 +119,7 @@ class Empresa
 		if($base->Iniciar()){
 			if($base->Ejecutar($consulta)){
 				if($empresa=$base->Registro()){					
-				    $this->setIdempresa($empresa['idempresa']);
+				    $this->setIdempresa($idempresa);
 					$this->setNombreEmpresa($empresa['enombre']);
 					$this->setDireccionEmpresa($empresa['edireccion']);
 					$resp= true;

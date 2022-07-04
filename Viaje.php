@@ -204,6 +204,8 @@ class Viaje{
                     $objEmpresa->Buscar($viaje['idempresa']);
                     $objResponsable= new ResponsableV();
                     $objResponsable->Buscar($viaje['rnumeroempleado']);
+                    $this->setObjEmpresa($objEmpresa);
+                    $this->setObjEmpresa($objResponsable);
                     $this->setImporte($viaje['vimporte']);
 					$this->setTipoAsiento($viaje['tipoAsiento']);
 					$this->setIdayvuelta($viaje['idayvuelta']);
@@ -241,9 +243,9 @@ class Viaje{
 			if($base->Ejecutar($consultaViaje)){				
 				$arrayViajes= array();
 				while($viaje=$base->Registro()){
-					$objResponsable= new Viaje();
-					$objResponsable->Buscar($viaje['idviaje']);
-					array_push($arrayViajes, $objResponsable);
+					$objViaje= new Viaje();
+					$objViaje->Buscar($viaje['idviaje']);
+					array_push($arrayViajes, $objViaje);
 				}
 		 	}
             else{

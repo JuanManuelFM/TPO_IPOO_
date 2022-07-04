@@ -125,11 +125,17 @@ do{
     switch ($opcion){
         case 1: 
                 //Menu EMPRESAS
+                $nuevaEmpresa= new Empresa;
                 $OpcionEmpresa= menuCategoriasEmpresa();
                 switch ($OpcionEmpresa){
                     case 1: //Agregar una EMPRESA
+                        //CHEQUEAR QUE PASA CON EL ID
                         echo "Ingrese el nombre de la empresa: ";
-                        $
+                        $nombre= strtoupper(trim(fgets(STDIN)));
+                        echo "Ingrese la dirección de la empresa: ";
+                        $direccion= strtoupper(trim(fgets(STDIN)));
+                        $nuevaEmpresa->cargar("", $nombre, $direccion);
+                        
                 }
         break;
         case 2: 
