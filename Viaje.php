@@ -59,7 +59,7 @@ class Viaje{
     public function setObjEmpresa($objEmpresa){
         $this->objEmpresa = $objEmpresa;
     }
-    public function setobjResponsable($objResponsable){
+    public function setObjResponsable($objResponsable){
         $this->objResponsable = $objResponsable;
     }
     public function setImporte($importe){
@@ -100,17 +100,22 @@ class Viaje{
         return $this->tipoAsiento;
     }
     public function getIdayvuelta(){
-        $this->idayvuelta;
+        return $this->idayvuelta;
     }
     public function getColeccionPasajeros(){
-        $this->coleccionPasajeros;
+        return $this->coleccionPasajeros;
     }
     public function getMensajeFuncion(){
-        $this->mensajeFuncion;
+        return $this->mensajeFuncion;
     }
     /*
-    idviaje-vdestino-vcantmaxpasajeros-idempresa
-    rnumeroempleado-vimporte-tipoAsiento-idayvuelta
+    vdestino
+    vcantmaxpasajeros
+    idempresa
+    rnumeroempleado
+    vimporte
+    tipoAsiento
+    idayvuelta
 
     getIdviaje-getDestino-getCantMaxPasajeros-getObjEmpresa
     getobjResponsable-getImporte-getTipoAsiento-getIdayvuelta
@@ -120,8 +125,7 @@ class Viaje{
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$consulta= "INSERT INTO viaje VALUES (
-        '".$this->getIdviaje()."', 
+		$consulta= "INSERT INTO viaje (vdestino, vcantmaxpasajeros, idempresa, rnumeroempleado, vimporte, tipoAsiento, idayvuelta) VALUES ( 
         '".$this->getDestino()."',
         '".$this->getCantMaxPasajeros()."',
         '".$this->getObjEmpresa()->getIdempresa()."',
@@ -204,7 +208,7 @@ class Viaje{
                     $objResponsable= new ResponsableV();
                     $objResponsable->Buscar($viaje['rnumeroempleado']);
                     $this->setObjEmpresa($objEmpresa);
-                    $this->setObjEmpresa($objResponsable);
+                    $this->setObjResponsable($objResponsable);
                     $this->setImporte($viaje['vimporte']);
 					$this->setTipoAsiento($viaje['tipoAsiento']);
 					$this->setIdayvuelta($viaje['idayvuelta']);
@@ -277,10 +281,17 @@ class Viaje{
 
     public function hayPasajesDisponible(){
         $lugar = false;
-        if(count($this->getCollecionPasajeros) < $this->getCantMaxPasajeros()){
+        $arrayPasajeros = $this->getColeccionPasajeros();
+        if(count($arrayPasajeros) < $this->getCantMaxPasajeros()){
            $lugar = true;
         }
         return $lugar;
+    }
+
+    public function agregarPasajero($nuevoObjPasajero){
+        $arrayPasajeros = $this->getColeccionPasajeros();
+        array_push($arrayPasajeros, $nuevoObjPasajero);
+        $this->setColeccionPasajeros($arrayPasajeros);
     }
     /*
     idviaje-vdestino-vcantmaxpasajeros-idempresa

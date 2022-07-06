@@ -68,8 +68,7 @@ class ResponsableV{
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$consulta= "INSERT INTO responsable VALUES ('".
-        $this->getNumEmpleado()."', 
+		$consulta= "INSERT INTO responsable (rnumerolicencia, rnombre, rapellido) VALUES (
         '".$this->getNumLicencia()."',
         '".$this->getNombre()."',
         '".$this->getApellido()."')"; 
@@ -142,10 +141,10 @@ class ResponsableV{
 		$resp= false;
 		if($base->Iniciar()){
 			if($base->Ejecutar($consulta)){
-				if($responsable=$base->Registro()){					
-				    $this->setNombre($responsable['nombre']);
-					$this->setApellido($responsable['enombre']);
-					$this->setNumEmpleado($responsable['edireccion']);
+				if($responsable=$base->Registro()){				
+                    $this->setNumLicencia($responsable['rnumerolicencia']);	
+				    $this->setNombre($responsable['rnombre']);
+					$this->setApellido($responsable['rapellido']);
 					$resp= true;
 				}				
 		 	}
