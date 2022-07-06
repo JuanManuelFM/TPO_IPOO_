@@ -1,5 +1,4 @@
 <?php
-include 'BaseDatos.php';
 
 /*
 CREATE TABLE responsable (

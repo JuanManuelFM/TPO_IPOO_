@@ -1,8 +1,7 @@
 ﻿<?php
 /* IMPORTANTE !!!!  Clase para (PHP 5, PHP 7)*/
 
-class BaseDatos
-{
+class BaseDatos{
     private $HOSTNAME;
     private $BASEDATOS;
     private $USUARIO;

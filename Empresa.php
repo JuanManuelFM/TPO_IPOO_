@@ -1,5 +1,4 @@
 <?php
-include 'BaseDatos.php';
 
 /*
 CREATE TABLE empresa(
@@ -60,7 +59,8 @@ class Empresa
     public function insertar(){
 		$base=new BaseDatos();
 		$resp= false;
-		$consulta= "INSERT INTO empresa VALUES ('".$this->getNombreEmpresa()."', '".$this->getDireccionEmpresa()."')"; 
+		$consulta= "INSERT INTO empresa (enombre, edireccion) VALUES ('".$this->getNombreEmpresa()."',
+		'".$this->getDireccionEmpresa()."')"; 
 		if($base->Iniciar()){
 			    if($base->Ejecutar($consulta)){
 			        $resp=  true;
@@ -114,7 +114,7 @@ class Empresa
 	*/		
     public function Buscar($idempresa){
 		$base=new BaseDatos();
-		$consulta="SELECT * FROM persona WHERE idempresa=" .$idempresa;
+		$consulta="SELECT * FROM empresa WHERE idempresa=" .$idempresa;
 		$resp= false;
 		if($base->Iniciar()){
 			if($base->Ejecutar($consulta)){
