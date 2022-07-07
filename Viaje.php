@@ -282,7 +282,8 @@ class Viaje{
     public function hayPasajesDisponible(){
         $lugar = false;
         $arrayPasajeros = $this->getColeccionPasajeros();
-        if(count($arrayPasajeros) < $this->getCantMaxPasajeros()){
+        $maxPasajeros= $this->getCantMaxPasajeros();
+        if(count($arrayPasajeros) < $maxPasajeros){
            $lugar = true;
         }
         return $lugar;
