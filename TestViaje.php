@@ -82,15 +82,14 @@ function menuCategoriasPasajero(){
 
 function menuCategoriasViaje(){
     $minimo = 1;
-    $maximo = 8;
+    $maximo = 7;
         echo"1) :----------Agregar un viaje----------: \n";
         echo"2) :----Agregar pasajero a un viaje-----: \n";
-        echo"3) :---Agregar responsable a un viaje---: \n";
-        echo"4) :---------Modificar un viaje---------: \n";
-        echo"5) :----------Buscar un viaje-----------: \n";
-        echo"6) :----------Listar un viaje-----------: \n";
-        echo"7) :---------Eliminar un viaje----------: \n";
-        echo"8) :---------------Salir----------------: \n";
+        echo"3) :---------Modificar un viaje---------: \n";
+        echo"4) :----------Buscar un viaje-----------: \n";
+        echo"5) :----------Listar un viaje-----------: \n";
+        echo"6) :---------Eliminar un viaje----------: \n";
+        echo"7) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
         // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
     return $opcion;
@@ -581,10 +580,7 @@ do{
                         echo "No hay más lugares disponibles en este viaje... \n";
                     }
                 break;
-                case 3:
-                    
-                break;
-                case 4: //MODIFICAR un viaje
+                case 3: //MODIFICAR un viaje
                     echo "Ingrese el ID del viaje que desea modificar: ";
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
@@ -641,7 +637,7 @@ do{
                             echo "Ocurrió algún error al modificar el viaje... \n";
                         }
                 break;
-                case 5:
+                case 4:
                     echo "Ingrese el ID del viaje que desea buscar: ";
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
@@ -654,7 +650,7 @@ do{
                         echo "No se encontró un viaje con el ID indicado... \n";
                     }
                 break;
-                case 6://LISTAR viajes
+                case 5://LISTAR viajes
                     echo "¿Desea listar con algúna condición en específico? si/no: ";
                     $respuesta= strtoupper(trim(fgets(STDIN)));
                     $laRespuesta= verificadorSiNo($respuesta);
@@ -689,7 +685,7 @@ do{
                         }
                     }
                 break;
-                case 7: //BORRAR un viaje
+                case 6: //BORRAR un viaje
                     echo "Ingrese el ID del viaje que desea borrar: ";
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
@@ -719,7 +715,7 @@ do{
                         echo "No se encontró una empresa con el ID indicado... \n";
                     }    
                 break;
-                case 8:
+                case 7:
                 break;
             }
         break;
