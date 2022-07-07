@@ -411,9 +411,6 @@ do{
                         echo "Ingrese nuevamente el telefono del pasajero: ";
                         $telefono= trim(fgets(STDIN));
                         $objPasajeroPrueba->setTelefono($telefono);
-                        echo "Ingrese nuevamente el documento del pasajero: ";
-                        $documentoP= trim(fgets(STDIN));
-                        $objPasajeroPrueba->setDocumento($documentoP);
                         echo "Ingrese nuevamente el ID del viaje al que pertenecerá este pasajero: ";
                         $id= trim(fgets(STDIN));
                         while (!$objPruebaViaje->Buscar($id)) {
