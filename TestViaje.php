@@ -72,7 +72,7 @@ function menuCategoriasPasajero(){
         echo"1) :--------Agregar un pasajero---------: \n";
         echo"2) :-------Modificar un pasajero--------: \n";
         echo"3) :--------Buscar un pasajero----------: \n";
-        echo"4) :--------Listar un pasajero----------: \n";
+        echo"4) :---------Listar pasajeros-----------: \n";
         echo"5) :-------Eliminar un pasajero---------: \n";
         echo"6) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
@@ -87,7 +87,7 @@ function menuCategoriasViaje(){
         echo"2) :----Agregar pasajero a un viaje-----: \n";
         echo"3) :---------Modificar un viaje---------: \n";
         echo"4) :----------Buscar un viaje-----------: \n";
-        echo"5) :----------Listar un viaje-----------: \n";
+        echo"5) :-----------Listar viajes------------: \n";
         echo"6) :---------Eliminar un viaje----------: \n";
         echo"7) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
@@ -125,7 +125,12 @@ do{
                 switch ($OpcionEmpresa) {
                 case 1: //AGREGAR una empresa
                     $objNuevaEmpresa= new Empresa();
-                    //CHEQUEAR QUE PASA CON EL ID
+                    $arrayEmpresas= $objNuevaEmpresa->Listar();
+                    foreach ($arrayEmpresas as $datosEmpresas) {
+                        echo "******************************************** \n";
+                        echo $datosEmpresas;
+                        echo "******************************************** \n";
+                    }
                     echo "Ingrese el nombre de la empresa: ";
                     $nombre= trim(fgets(STDIN));
                     echo "Ingrese la dirección de la empresa: ";
@@ -138,9 +143,15 @@ do{
                     }
                 break;
                 case 2: //MODIFICAR una empresa
+                    $objEmpresa= new Empresa();
+                    $arrayEmpresas= $objEmpresa->Listar();
+                    foreach ($arrayEmpresas as $datosEmpresas) {
+                        echo "******************************************** \n";
+                        echo $datosEmpresas;
+                        echo "******************************************** \n";
+                    }
                     echo "Ingrese el ID de la empresa que deséa modificar: ";
                     $id= trim(fgets(STDIN));
-                    $objEmpresa= new Empresa();
                     while (!$objEmpresa->Buscar($id)) {
                         echo "No hay una empresa con ese ID, por favor intentelo con otro ID valido: ";
                         $id= trim(fgets(STDIN));
@@ -156,7 +167,7 @@ do{
                     $direccionE= strtoupper(trim(fgets(STDIN)));
                     $objEmpresa->setDireccionEmpresa($direccionE);
                         if ($objEmpresa->modificar()) {
-                            echo "La empresa se ha modificado con exito \n";
+                            echo "La empresa se ha modificado con exito... \n";
                         } else {
                             echo "Ocurrió algún error al modificar la empresa... \n";
                         }
@@ -244,6 +255,12 @@ do{
             switch ($OpcionResponsable) {
                 case 1: //AGREGAR un responsable
                     $objNuevoResponsable= new ResponsableV();
+                    $arrayResponsables= $objNuevoResponsable->Listar();
+                    foreach ($arrayEmpresas as $datosResponsables) {
+                        echo "******************************************** \n";
+                        echo $datosResponsables;
+                        echo "******************************************** \n";
+                    }
                     //CHEQUEAR QUE PASA CON EL ID
                     echo "Ingrese el numero de licencia del responsable: ";
                     $licencia= trim(fgets(STDIN));
@@ -259,9 +276,15 @@ do{
                     }
                 break;
                 case 2: //MODIFICAR una responsable
+                    $objPruebaResponsable= new ResponsableV();
+                    $arrayResponsables= $objPruebaResponsable->Listar();
+                    foreach ($arrayResponsables as $datosResponsables){
+                        echo "******************************************** \n";
+                        echo $datosResponsables;
+                        echo "******************************************** \n";
+                    }
                     echo "Ingrese el Nº de empleado del responsable que deséa modificar: ";
                     $numR= trim(fgets(STDIN));
-                    $objPruebaResponsable= new ResponsableV();
                     if ($objPruebaResponsable->Buscar($numR)) {
                         echo "************************** \n";
                         echo $objPruebaResponsable->__toString();
@@ -277,7 +300,7 @@ do{
                         $apellidoR= strtoupper(trim(fgets(STDIN)));
                         $objPruebaResponsable->setApellido($apellidoR);
                         if ($objPruebaResponsable->modificar()) {
-                            echo "El responsable se ha modificado con exito \n";
+                            echo "El responsable se ha modificado con exito... \n";
                         } else {
                             echo "Ocurrió algún error al modificar el responsable... \n";
                         }
@@ -367,6 +390,12 @@ do{
             switch ($OpcionPasajeros) {
                 case 1: //AGREGAR un pasajero
                     $objNuevoPasajero= new Pasajero();
+                    $arrayPasajeros= $objNuevoPasajero->Listar();
+                    foreach ($arrayPasajeros as $datosPasajeros){
+                        echo "******************************************** \n";
+                        echo $datosPasajeros;
+                        echo "******************************************** \n";
+                    }
                     $objPruebaViaje= new Viaje();
                     echo "Ingrese el nombre del pasajero: ";
                     $nombreP= trim(fgets(STDIN));
@@ -394,9 +423,15 @@ do{
                         }
                 break;
                 case 2: //MODIFICAR un pasajero
+                    $objPasajeroPrueba= new Pasajero();
+                    $arrayPasajeros= $objPasajeroPrueba->Listar();
+                    foreach ($arrayPasajeros as $datosPasajeros){
+                        echo "******************************************** \n";
+                        echo $datosPasajeros;
+                        echo "******************************************** \n";
+                    }
                     echo "Ingrese el N° de documento del pasajero que deséa modificar: ";
                     $doc= trim(fgets(STDIN));
-                    $objPasajeroPrueba= new Pasajero();
                     $objPruebaViaje= new Viaje();
                     if ($objPasajeroPrueba->Buscar($doc)) {
                         echo "******************************************** \n";
@@ -513,6 +548,12 @@ do{
             switch ($opcionViajes) {
                 case 1: //CREAR un viaje
                     $objNuevoViaje= new Viaje();
+                    $arrayViajes= $objNuevoViaje->Listar();
+                    foreach ($arrayViajes as $datosViajes){
+                        echo "******************************************** \n";
+                        echo $datosViajes;
+                        echo "******************************************** \n";
+                    }
                     $objResponsablePrueba= new ResponsableV();
                     $objEmpresaPrueba= new Empresa();
                     //CHEQUEAR QUE PASA CON EL ID
@@ -638,7 +679,6 @@ do{
                     }
                     echo "Ingrese el ID del viaje que desea modificar: ";
                     $id= trim(fgets(STDIN));
-                    
                     $objResponsablePrueba= new ResponsableV();
                     $objEmpresaPrueba= new Empresa();
                     while (!$objViajePrueba->Buscar($id)) {
