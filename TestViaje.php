@@ -732,7 +732,7 @@ do{
                             echo "Ocurrió algún error al modificar el viaje... \n";
                         }
                 break;
-                case 4:
+                case 4://BUSCAR un viaje
                     echo "Ingrese el ID del viaje que desea buscar: ";
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
@@ -781,7 +781,7 @@ do{
                         }
                     }
                 break;
-                case 6: //BORRAR un viaje
+                case 6: //ELIMINAR un viaje
                     echo "Ingrese el ID del viaje que desea borrar: ";
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
