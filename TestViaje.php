@@ -40,12 +40,13 @@ function menuInicio() {
 
 function menuCategoriasEmpresa(){
     $minimo = 1;
-    $maximo = 5;
+    $maximo = 6;
         echo"1) :--------Agregar una empresa---------: \n";
         echo"2) :-------Modificar una empresa--------: \n";
         echo"3) :---------Buscar una empresa---------: \n";
         echo"4) :--------Listar una empresa----------: \n";
         echo"5) :--------Eliminar una empresa--------: \n";
+        echo"6) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
         // Function solicitarNumeroEntre($min, $max)
     return $opcion;
@@ -53,12 +54,13 @@ function menuCategoriasEmpresa(){
 
 function menuCategoriasResponsable(){
     $minimo = 1;
-    $maximo = 5;
+    $maximo = 6;
         echo"1) :-------Agregar un responsable-------: \n";
         echo"2) :------Modificar un responsable------: \n";
         echo"3) :-------Buscar un responsable--------: \n";
         echo"4) :-------Listar un responsable--------: \n";
         echo"5) :------Eliminar un responsable-------: \n";
+        echo"6) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
         // Function solicitarNumeroEntre($min, $max)
     return $opcion;
@@ -66,12 +68,13 @@ function menuCategoriasResponsable(){
 
 function menuCategoriasPasajero(){
     $minimo = 1;
-    $maximo = 5;
+    $maximo = 6;
         echo"1) :--------Agregar un pasajero---------: \n";
         echo"2) :-------Modificar un pasajero--------: \n";
         echo"3) :--------Buscar un pasajero----------: \n";
         echo"4) :--------Listar un pasajero----------: \n";
         echo"5) :-------Eliminar un pasajero---------: \n";
+        echo"6) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
         // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
     return $opcion;
@@ -79,7 +82,7 @@ function menuCategoriasPasajero(){
 
 function menuCategoriasViaje(){
     $minimo = 1;
-    $maximo = 7;
+    $maximo = 8;
         echo"1) :----------Agregar un viaje----------: \n";
         echo"2) :----Agregar pasajero a un viaje-----: \n";
         echo"3) :---Agregar responsable a un viaje---: \n";
@@ -87,6 +90,7 @@ function menuCategoriasViaje(){
         echo"5) :----------Buscar un viaje-----------: \n";
         echo"6) :----------Listar un viaje-----------: \n";
         echo"7) :---------Eliminar un viaje----------: \n";
+        echo"8) :---------------Salir----------------: \n";
         $opcion = solicitarNumeroEntre($minimo, $maximo);
         // Function solicitarNumeroEntre($min, $max), reusada el archivo tateti.php
     return $opcion;
@@ -167,9 +171,9 @@ do{
                         $id= trim(fgets(STDIN));
                     }
                     echo "Se encontró la empresa del ID " . $id . ". Los datos registrados de la empresa son: \n";
-                    echo "************************** \n";
+                    echo "******************************************** \n";
                     echo $objEmpresa->__toString();
-                    echo "************************** \n";
+                    echo "******************************************** \n";
                 break;
                 case 4: //LISTAR empresas
                     echo "¿Desea listar con algúna condición en específico? si/no: ";
@@ -179,18 +183,31 @@ do{
                     if ($laRespuesta == "NO") {
                         $arrayEmpresas= $objEmpresa->listar();
                         $datosEmpresas="";
-                        foreach ($arrayEmpresas as $datosEmpresas) {
-                            echo $datosEmpresas;
-                            echo "****************************************** \n";
+                        $cantidadEmpresas= count($arrayEmpresas);
+                        if ($cantidadEmpresas !== 0) {
+                            foreach ($arrayEmpresas as $datosEmpresas) {
+                                echo "******************************************** \n";
+                                echo $datosEmpresas;
+                                echo "****************************************** \n";
+                            }
+                        } else {
+                            echo "No hay ninguna empresa creada... \n";
                         }
-                    } else {
+                    } 
+                    else {
                         echo "Escriba la condición de listado en formato SQL, el WHERE ya está incluido: ";
                         $condicion= strtoupper(trim(fgets(STDIN)));
                         $arrayEmpresas= $objEmpresa->listar($condicion);
                         $datosEmpresas="";
-                        foreach ($arrayEmpresas as $datosEmpresas) {
-                            echo $datosEmpresas;
-                            echo "****************************************** \n";
+                        $cantidadEmpresas= count($arrayEmpresas);
+                        if ($cantidadEmpresas !== 0) {
+                            foreach ($arrayEmpresas as $datosEmpresas) {
+                                echo "******************************************** \n";
+                                echo $datosEmpresas;
+                                echo "****************************************** \n";
+                            }
+                        } else {
+                            echo "No hay ninguna empresa creada WHERE " . $condicion . "... \n";
                         }
                     }
                 break;
@@ -199,9 +216,9 @@ do{
                     $id= trim(fgets(STDIN));
                     $objEmpresa= new Empresa();
                     if ($objEmpresa->buscar($id)) {
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo $objEmpresa->__toString();
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo "¿Esta es la empresa que usted desea eliminar? si/no: ";
                         $respuesta= strtoupper(trim(fgets(STDIN)));
                         $laRespuesta= verificadorSiNo($respuesta);
@@ -217,6 +234,8 @@ do{
                     } else {
                         echo "No se encontró una empresa con el ID indicado... \n";
                     }
+                break;
+                case 6:
                 break;
             }
         break;
@@ -273,9 +292,9 @@ do{
                     $objPruebaResponsable= new ResponsableV();
                     if ($objPruebaResponsable->Buscar($numE)) {
                         echo "Se encontró el responsable del Nº de empleado " . $numE . ". Los datos registrados del mismo son: \n";
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo $objPruebaResponsable->__toString();
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                     } else {
                         echo "No se encontró un responsable con el Nº de empleado indicado... \n";
                     }
@@ -288,44 +307,58 @@ do{
                     if ($laRespuesta == "NO") {
                         $arrayResponsables= $objPruebaResponsable->listar();
                         $datosResponsables="";
-                        foreach ($arrayResponsables as $datosResponsables) {
-                            echo $datosResponsables;
-                            echo "****************************************** \n";
+                        $cantidadResponsables= count($arrayResponsables);
+                        if ($cantidadResponsables !== 0) {
+                            foreach ($arrayResponsables as $datosResponsables) {
+                                echo "******************************************** \n";
+                                echo $datosResponsables;
+                                echo "******************************************** \n";
+                            }
+                        } else {
+                            echo "No hay ningún responsable creado... \n";
                         }
                     } else {
                         echo "Escriba la condición de listado en formato SQL, el WHERE ya está incluido: ";
                         $condicion= strtoupper(trim(fgets(STDIN)));
                         $arrayResponsables= $objPruebaResponsable->listar($condicion);
                         $datosResponsables="";
-                        foreach ($arrayResponsables as $datosResponsables) {
-                            echo $datosResponsables;
-                            echo "****************************************** \n";
-                        }
-                    }
-                    break;
-                    case 5: //ELIMINAR un responsable
-                        echo "Ingrese el Nº de empleado del responsable que desea borrar: ";
-                        $numE= trim(fgets(STDIN));
-                        $objPruebaResponsable= new ResponsableV();
-                        if ($objPruebaResponsable->buscar($numE)) {
-                            echo "************************** \n";
-                            echo $objPruebaResponsable->__toString();
-                            echo "************************** \n";
-                            echo "¿Este es el responsable que usted desea eliminar? si/no: ";
-                            $respuesta= strtoupper(trim(fgets(STDIN)));
-                            $laRespuesta= verificadorSiNo($respuesta);
-                            if ($laRespuesta == "NO") {
-                                echo "Usted ha decidido no borrar esta empresa... \n";
-                            } else {
-                                if ($objPruebaResponsable->eliminar()) {
-                                    echo "La empresa se ha eliminado con exito... \n";
-                                } else {
-                                    echo "El responsable esta siendo utilizado en algún viaje... \n";
-                                }
+                        $cantidadResponsables= count($arrayResponsables);
+                        if ($cantidadResponsables !== 0) {
+                            foreach ($arrayResponsables as $datosResponsables) {
+                                echo "******************************************** \n";
+                                echo $datosResponsables;
+                                echo "******************************************** \n";
                             }
                         } else {
-                            echo "No se encontró una empresa con el ID indicado... \n";
+                            echo "No hay ningún responsable creado WHERE " . $condicion . "... \n";
                         }
+                    }
+                break;
+                case 5: //ELIMINAR un responsable
+                    echo "Ingrese el Nº de empleado del responsable que desea borrar: ";
+                    $numE= trim(fgets(STDIN));
+                    $objPruebaResponsable= new ResponsableV();
+                    if ($objPruebaResponsable->buscar($numE)) {
+                        echo "******************************************** \n";
+                        echo $objPruebaResponsable->__toString();
+                        echo "******************************************** \n";
+                        echo "¿Este es el responsable que usted desea eliminar? si/no: ";
+                        $respuesta= strtoupper(trim(fgets(STDIN)));
+                        $laRespuesta= verificadorSiNo($respuesta);
+                        if ($laRespuesta == "NO") {
+                            echo "Usted ha decidido no borrar esta empresa... \n";
+                        } else {
+                            if ($objPruebaResponsable->eliminar()) {
+                                echo "El responsable se ha eliminado con exito... \n";
+                            } else {
+                                echo "El responsable esta siendo utilizado en algún viaje... \n";
+                            }
+                        }
+                    } else {
+                        echo "No se encontró una empresa con el ID indicado... \n";
+                    }
+                case 6:
+                break;
             }
         break;
         case 3:
@@ -349,16 +382,16 @@ do{
                     $telefono= trim(fgets(STDIN));
                     echo "Ingrese el ID del viaje al que pertenecerá este pasajero: ";
                     $id= trim(fgets(STDIN));
-                    if ($objPruebaViaje->buscar($id)) {
-                        $objNuevoPasajero->cargar($nombreP, $apellidoP, $documentoP, $telefono, $objPruebaViaje);
+                    while (!$objPruebaViaje->buscar($id)) {
+                        echo "No hay un viaje con ese ID, por favor intentelo con otro ID valido: ";
+                        $id= trim(fgets(STDIN));
+                    }    
+                    $objNuevoPasajero->cargar($nombreP, $apellidoP, $documentoP, $telefono, $objPruebaViaje);
                         if ($objNuevoPasajero->insertar()) {
-                            echo "El pasajero se ha creado con exito \n";
+                            echo "El pasajero se ha creado con exito... \n";
                         } else {
                             echo "Ocurrió algún error al crear al pasajero... \n";
                         }
-                    } else {
-                        echo "No hay ningún viaje registrado con el ID que ha ingresado... \n";
-                    }
                 break;
                 case 2: //MODIFICAR un pasajero
                     echo "Ingrese el N° de documento del pasajero que deséa modificar: ";
@@ -366,9 +399,9 @@ do{
                     $objPasajeroPrueba= new Pasajero();
                     $objPruebaViaje= new Viaje();
                     if ($objPasajeroPrueba->Buscar($doc)) {
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo $objPasajeroPrueba->__toString();
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo "Ingrese nuevamente el nombre del pasajero: ";
                         $nombreP= trim(fgets(STDIN));
                         $objPasajeroPrueba->setNombre($nombreP);
@@ -390,7 +423,7 @@ do{
                         $objPruebaViaje->setIdviaje($id);
                         $objPasajeroPrueba->setObjViaje($objPruebaViaje);
                         if ($objPasajeroPrueba->modificar()) {
-                            echo "El pasajero se ha modificado con exito \n";
+                            echo "El pasajero se ha modificado con exito... \n";
                         } else {
                             echo "Ocurrió algún error al modificar el pasajero... \n";
                         }
@@ -399,38 +432,53 @@ do{
                     }
                 break;
                 case 3: //BUSCAR un pasajero
-                    echo "Ingrese el ID del viaje que desea buscar: ";
-                    $id= trim(fgets(STDIN));
-                    $objEmpresa= new Empresa();
-                    while (!$objEmpresa->Buscar($id)) {
-                        echo "No hay una empresa con ese ID, por favor intentelo con otro ID valido: ";
-                        $id= trim(fgets(STDIN));
+                    echo "Ingrese el N° de documento del pasajero que desea buscar: ";
+                    $doc= trim(fgets(STDIN));
+                    $objPasajeroPrueba= new Pasajero();
+                    while (!$objPasajeroPrueba->Buscar($doc)) {
+                        echo "No hay un pasajero con ese N° de documento, por favor intentelo con otro documento valido: ";
+                        $doc= trim(fgets(STDIN));
                     }
-                    echo "Se encontró la empresa del ID " . $id . "\n . Los datos registrados de la empresa son: \n";
-                    echo "************************** \n";
-                    echo $objEmpresa->__toString();
-                    echo "************************** \n";
+                    echo "Se encontró el pasajero con el N° de documento  " . $doc . ". Los datos registrados del pasajero son: \n";
+                    echo "******************************************** \n";
+                    echo $objPasajeroPrueba->__toString();
+                    echo "******************************************** \n";
                 break;
                 case 4: //LISTAR pasajeros
-                    echo "¿Desea listar con algúna condición en específico? si/no";
+                    echo "¿Desea listar con algúna condición en específico? si/no: ";
                     $respuesta= strtoupper(trim(fgets(STDIN)));
                     $laRespuesta= verificadorSiNo($respuesta);
                     $objPasajeroPrueba= new Pasajero();
                     if ($laRespuesta == "NO") {
                         $arrayPasajeros= $objPasajeroPrueba->listar();
                         $datosPasajeros="";
-                        foreach ($arrayPasajeros as $datosPasajeros) {
-                            echo $datosPasajeros;
-                            echo "****************************************** \n";
+                        $cantidadPasajeros= count($arrayPasajeros);
+                        if ($cantidadPasajeros !== 0) {
+                            foreach ($arrayPasajeros as $datosPasajeros) {
+                                echo "******************************************** \n";
+                                echo $datosPasajeros;
+                                echo "******************************************** \n";
+                            }
                         }
-                    } else {
+                        else{
+                            echo "No hay ningún pasajero creado... \n";
+                        }
+                    } 
+                    else {
                         echo "Escriba la condición de listado en formato SQL, el WHERE ya está incluido: ";
                         $condicion= strtoupper(trim(fgets(STDIN)));
                         $arrayPasajeros= $objPasajeroPrueba->listar($condicion);
                         $datosPasajeros="";
-                        foreach ($arrayPasajeros as $datosPasajeros) {
-                            echo $datosResponsables;
-                            echo "****************************************** \n";
+                        $cantidadPasajeros= count($arrayPasajeros);
+                        if ($cantidadPasajeros !== 0) {
+                            foreach ($arrayPasajeros as $datosPasajeros) {
+                                echo "******************************************** \n";
+                                echo $datosPasajeros;
+                                echo "******************************************** \n";
+                            }
+                        }
+                        else{
+                            echo "No hay ningún pasajero creado WHERE ". $condicion . "...\n";
                         }
                     }
                     break;
@@ -439,9 +487,9 @@ do{
                         $doc= trim(fgets(STDIN));
                         $objPasajeroPrueba= new Pasajero();
                         if ($objPasajeroPrueba->buscar($doc)) {
-                            echo "************************** \n";
+                            echo "******************************************** \n";
                             echo $objPasajeroPrueba->__toString();
-                            echo "************************** \n";
+                            echo "******************************************** \n";
                             echo "¿Este es el pasajero que usted desea eliminar? si/no: ";
                             $respuesta= strtoupper(trim(fgets(STDIN)));
                             $laRespuesta= verificadorSiNo($respuesta);
@@ -457,7 +505,9 @@ do{
                         } else {
                             echo "No se encontró un pasajero con el N° de documento ingresado... \n";
                         }
-            }
+                    case 6:
+                    break;
+            }       
         break;
         case 4:
             $opcionViajes= menuCategoriasViaje();
@@ -493,12 +543,12 @@ do{
                         echo "Ingrese el importe del viaje: ";
                         $importe= trim(fgets(STDIN));
                         echo "Tipo de asiento del viaje PC(Primera clase)/CE(Clase estandar): ";
-                        $tipoAsiento= trim(fgets(STDIN));
+                        $tipoAsiento= strtoupper(trim(fgets(STDIN)));
                         $tipoDeAsiento= PrimeraOEstandar($tipoAsiento);
                         echo "Ingrese si/no dependiendo si el viaje es ida y vuelta: ";
-                        $idaVuelta= trim(fgets(STDIN));
+                        $idaVuelta= strtoupper(trim(fgets(STDIN)));
                         $idaYVuelta= verificadorSiNo($idaVuelta);
-                        $objNuevoViaje->cargar("", $destinoV, $cantMaxPasajeros, $idE, $numEmpleado, $importe, $tipoDeAsiento, $idaYVuelta);
+                        $objNuevoViaje->cargar("", $destinoV, $cantMaxPasajeros, $objEmpresaPrueba, $objResponsablePrueba, $importe, $tipoDeAsiento, $idaYVuelta);
                         if ($objNuevoViaje->insertar()) {
                             echo "El viaje se ha creado con exito... \n";
                         } else {
@@ -547,15 +597,18 @@ do{
                         echo "No hay un viaje con ese ID, por favor intentelo con otro ID valido: ";
                         $id= trim(fgets(STDIN));
                     }
-                    echo "************************** \n";
+                    echo "******************************************** \n";
                     echo $objViajePrueba->__toString();
-                    echo "************************** \n";
+                    echo "******************************************** \n";
                     echo "Ingrese nuevamente el destino del viaje: ";
-                    $destinoV= strtoupper(trim(fgets(STDIN)));
-                    while ($objViajePrueba->Buscar($destinoV)) {
-                        echo "Ya existe un viaje al mismo destino, por favor intentelo con un destino distinto: ";
+                    do{
                         $destinoV= strtoupper(trim(fgets(STDIN)));
-                    }
+                        $arrayViajes= $objViajePrueba->Listar("vdestino= '$destinoV'");
+                        $numeroViajesDestino= count($arrayViajes);
+                        if ($numeroViajesDestino > 0) {
+                            echo "Ya hay un viaje creado hacia el mismo destino... \n";
+                        }
+                    } while ($numeroViajesDestino > 0);
                     $objViajePrueba->setDestino($destinoV);
                     echo "Ingrese nuevamente cantidad máxima de pasajeros del viaje: ";
                     $cantMaxPasajeros= trim(fgets(STDIN));
@@ -578,17 +631,17 @@ do{
                     $importe= trim(fgets(STDIN));
                     $objViajePrueba->setImporte($importe);
                     echo "Ingrese nuevamente el tipo de asiento del viaje PC(Primera clase)/CE(Clase estandar): ";
-                    $tipoAsiento= trim(fgets(STDIN));
+                    $tipoAsiento= strtoupper(trim(fgets(STDIN)));
                     $tipoDeAsiento= PrimeraOEstandar($tipoAsiento);
                     $objViajePrueba->setTipoAsiento($tipoDeAsiento);
                     echo "Ingrese nuevamente si/no dependiendo si el viaje es ida y vuelta: ";
-                    $idaVuelta= trim(fgets(STDIN));
+                    $idaVuelta= strtoupper(trim(fgets(STDIN)));
                     $idaYVuelta= verificadorSiNo($idaVuelta);
                     $objViajePrueba->setIdayvuelta($idaYVuelta);
                         if ($objViajePrueba->modificar()) {
-                            echo "La empresa se ha modificado con exito \n";
+                            echo "El viaje se ha modificado con exito... \n";
                         } else {
-                            echo "Ocurrió algún error al modificar la empresa... \n";
+                            echo "Ocurrió algún error al modificar el viaje... \n";
                         }
                 break;
                 case 5:
@@ -597,9 +650,9 @@ do{
                     $objViajePrueba= new Viaje();
                     if ($objViajePrueba->Buscar($id)) {
                         echo "Se encontró el viaje con el ID " . $id . "\n . Los datos registrados en el viaje son: \n";
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo $objViajePrueba->__toString();
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                     } else {
                         echo "No se encontró un viaje con el ID indicado... \n";
                     }
@@ -615,8 +668,9 @@ do{
                         $cantidadViajes= count($arrayViajes);
                         if ($cantidadViajes !== 0) {
                             foreach ($arrayViajes as $datosViajes) {
+                                echo "******************************************** \n";
                                 echo $datosViajes;
-                                echo "****************************************** \n";
+                                echo "******************************************** \n";
                             }
                         } else {
                             echo "No hay ningún viaje creado... \n";
@@ -629,8 +683,9 @@ do{
                         $cantidadViajes= count($arrayViajes);
                         if ($cantidadViajes !== 0) {
                             foreach ($arrayViajes as $datosViajes) {
+                                echo "******************************************** \n";
                                 echo $datosViajes;
-                                echo "****************************************** \n";
+                                echo "******************************************** \n";
                             }
                         } else {
                             echo "No hay ningún viaje creado a " . $destinoV . "... \n";
@@ -642,21 +697,32 @@ do{
                     $id= trim(fgets(STDIN));
                     $objViajePrueba= new Viaje();
                     if ($objViajePrueba->buscar($id)) {
-                        echo "************************** \n";
+                        echo "******************************************** \n";
                         echo $objViajePrueba->__toString();
-                        echo "************************** \n";
-                        if ($objViajePrueba->getColeccionPasajeros() == []) {
-                            if ($objViajePrueba->eliminar()) {
-                                echo "La empresa se ha eliminado con exito... \n";
+                        echo "******************************************** \n";
+                        echo "¿Este es el viaje que usted desea eliminar? si/no: ";
+                        $respuesta= strtoupper(trim(fgets(STDIN)));
+                        $laRespuesta= verificadorSiNo($respuesta);
+                        if ($laRespuesta == "NO"){
+                            echo "Usted ha decidido no borrar este viaje... \n";
+                        }
+                        else{
+                            $cantidadPasajerosDentro= count($objViajePrueba->getColeccionPasajeros());
+                            if ($cantidadPasajerosDentro <= 0) {
+                                if ($objViajePrueba->eliminar()) {
+                                    echo "La empresa se ha eliminado con exito... \n";
+                                } else {
+                                    echo "No se logró eliminar el viaje... \n";
+                                }
                             } else {
-                                echo "No se logró eliminar el viaje... \n";
+                                echo "Este viaje cuenta con pasajeros dentro, no puede ser borrada... \n";
                             }
-                        } else {
-                            echo "Este viaje cuenta con pasajeros dentro, no puede ser borrada... \n";
                         }
                     } else {
                         echo "No se encontró una empresa con el ID indicado... \n";
-                    }
+                    }    
+                break;
+                case 8:
                 break;
             }
         break;

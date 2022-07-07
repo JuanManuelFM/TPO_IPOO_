@@ -62,7 +62,7 @@ class ResponsableV{
         return $this->apellido;
     }
     public function getMensajeFuncion(){
-        $this->mensajeFuncion;
+        return $this->mensajeFuncion;
     }
 
     public function insertar(){
@@ -141,7 +141,8 @@ class ResponsableV{
 		$resp= false;
 		if($base->Iniciar()){
 			if($base->Ejecutar($consulta)){
-				if($responsable=$base->Registro()){				
+				if($responsable=$base->Registro()){			
+                    $this->setNumEmpleado($numEmpleado);	
                     $this->setNumLicencia($responsable['rnumerolicencia']);	
 				    $this->setNombre($responsable['rnombre']);
 					$this->setApellido($responsable['rapellido']);
@@ -203,7 +204,7 @@ class ResponsableV{
 		$base=new BaseDatos();
 		$resp=false;
 		if($base->Iniciar()){
-				$consulta="DELETE FROM rnumeroempleado WHERE nombre= ".$this->getNumEmpleado();
+				$consulta="DELETE FROM responsable WHERE rnumeroempleado= ".$this->getNumEmpleado();
 				if($base->Ejecutar($consulta)){
 				    $resp=  true;
 				}

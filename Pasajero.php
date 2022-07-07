@@ -128,7 +128,7 @@ class Pasajero{
     public function modificar(){
 	    $resp =false; 
 	    $base=new BaseDatos();
-		$consulta="UPDATE Pasajero
+		$consulta="UPDATE pasajero
          SET 
          pnombre= '".$this->getNombre()."',
          papellido= '".$this->getApellido()."',
@@ -276,6 +276,6 @@ class Pasajero{
             "\n Apellido del pasajero: ".$this->getApellido().
             "\n Documento del pasajero: ".$this->getDocumento().
             "\n Codigo del viaje: ".$this->getObjViaje()->getIdviaje().
-            "\n El telefono del pasajero es: ".$this->getTelefono());
+            "\n El telefono del pasajero es: ".$this->getTelefono() . "\n");
 	}
 }
