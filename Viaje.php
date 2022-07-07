@@ -279,7 +279,30 @@ class Viaje{
 		return $resp; 
 	}
 
+    public function obtenerPasajeros(){
+        $base=new BaseDatos();
+        $resp=false;
+        $consulta= " idviaje= ". $this->getIdviaje();
+        if($base->Iniciar()){
+            $objPasajero= new Pasajero();
+            $arrayPasajeros=[];
+            $arrayPasajeros= $objPasajero->listar($consulta);
+            if(is_array($arrayPasajeros)){
+                $this->setColeccionPasajeros($arrayPasajeros);
+                $resp=true;
+            }
+            else{
+                $this->setMensajeFuncion($base->getError());	
+            }
+        }
+        else{
+            $this->setMensajeFuncion($base->getError());	
+		}
+		return $resp; 
+	}
+
     public function hayPasajesDisponible(){
+        $this->obtenerPasajeros();
         $lugar = false;
         $arrayPasajeros = $this->getColeccionPasajeros();
         $maxPasajeros= $this->getCantMaxPasajeros();

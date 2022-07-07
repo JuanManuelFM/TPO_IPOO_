@@ -522,7 +522,7 @@ do{
                         $arrayViajes= $objNuevoViaje->Listar("vdestino= '$destinoV'");
                         $numeroViajesDestino= count($arrayViajes);
                         if ($numeroViajesDestino > 0) {
-                            echo "Ya hay un viaje creado hacia el mismo destino... \n";
+                            echo "Ya hay un viaje creado hacia el mismo destino, ingrese otro destino: ";
                         }
                     } while ($numeroViajesDestino > 0);
                         echo "Ingrese cantidad máxima de pasajeros del viaje: ";
@@ -556,6 +556,12 @@ do{
                 break;
                 case 2: //AGREGA pasajeros
                     $objViajePrueba= new Viaje();
+                    $arrayPasajeros= $objViajePrueba->Listar();
+                    foreach ($arrayPasajeros as $datosViajes) {
+                        echo "******************************************** \n";
+                        echo $datosViajes;
+                        echo "******************************************** \n";
+                    }
                     $objNuevoPasajero= new Pasajero();
                     echo "Ingrese el ID del viaje al que desea agregar un pasajero: ";
                     $id= trim(fgets(STDIN));
@@ -566,6 +572,15 @@ do{
                     $lugar= $objViajePrueba->hayPasajesDisponible();
                     //echo $lugar;
                     if ($lugar) {
+                        $objViajePrueba->obtenerPasajeros();
+                        $arrayPasajerosV= $objViajePrueba->getColeccionPasajeros();
+                        $datosPasajerosV="";
+                        $cantidadPasajerosV= count($arrayPasajerosV);
+                            foreach ($arrayPasajerosV as $datosPasajerosV) {
+                                echo "******************************************** \n";
+                                echo $datosPasajerosV . "\n";
+                                echo "******************************************** \n";
+                            }
                         echo "Ingrese el nombre del pasajero: ";
                         $nombreP= trim(fgets(STDIN));
                         echo "Ingrese el apellido del pasajero: ";
@@ -593,14 +608,15 @@ do{
                     echo "¿Desea ver las personas registradas en este viaje? si/no: ";
                         $respuesta= strtoupper(trim(fgets(STDIN)));
                         $laRespuesta= verificadorSiNo($respuesta);
-                        if($laRespuesta= "SI"){
+                        if($laRespuesta == "SI"){
+                            $objViajePrueba->obtenerPasajeros();
                             $arrayPasajerosV= $objViajePrueba->getColeccionPasajeros();
                             $datosPasajerosV="";
                             $cantidadPasajerosV= count($arrayPasajerosV);
-                            if ($cantidadViajes !== 0) {
-                                foreach ($arrayPasajerosV as $objPasajeros) {
+                            if ($cantidadPasajerosV !== 0){
+                                foreach ($arrayPasajerosV as $datosPasajerosV) {
                                     echo "******************************************** \n";
-                                    echo $datosPasajerosV= $datosPasajerosV . "\n" . $objPasajeros . "\n";;
+                                    echo $datosPasajerosV . "\n";
                                     echo "******************************************** \n";
                                 }
                             } 
@@ -613,9 +629,16 @@ do{
                         }
                 break;
                 case 3: //MODIFICAR un viaje
+                    $objViajePrueba= new Viaje();
+                    $arrayPasajeros= $objViajePrueba->Listar();
+                    foreach ($arrayPasajeros as $datosViajes) {
+                        echo "******************************************** \n";
+                        echo $datosViajes;
+                        echo "******************************************** \n";
+                    }
                     echo "Ingrese el ID del viaje que desea modificar: ";
                     $id= trim(fgets(STDIN));
-                    $objViajePrueba= new Viaje();
+                    
                     $objResponsablePrueba= new ResponsableV();
                     $objEmpresaPrueba= new Empresa();
                     while (!$objViajePrueba->Buscar($id)) {
@@ -631,7 +654,7 @@ do{
                         $arrayViajes= $objViajePrueba->Listar("vdestino= '$destinoV'");
                         $numeroViajesDestino= count($arrayViajes);
                         if ($numeroViajesDestino > 0) {
-                            echo "Ya hay un viaje creado hacia el mismo destino... \n";
+                            echo "Ya hay un viaje creado hacia el mismo destino, ingrese otro: ";
                         }
                     } while ($numeroViajesDestino > 0);
                     $objViajePrueba->setDestino($destinoV);
@@ -697,7 +720,8 @@ do{
                                 echo $datosViajes;
                                 echo "******************************************** \n";
                             }
-                        } else {
+                        } 
+                        else {
                             echo "No hay ningún viaje creado... \n";
                         }
                     } else {
@@ -732,8 +756,9 @@ do{
                             echo "Usted ha decidido no borrar este viaje... \n";
                         }
                         else{
+                            $objViajePrueba->obtenerPasajeros();
                             $cantidadPasajerosDentro= count($objViajePrueba->getColeccionPasajeros());
-                            if ($cantidadPasajerosDentro <= 0) {
+                            if ($cantidadPasajerosDentro == 0) {
                                 if ($objViajePrueba->eliminar()) {
                                     echo "La empresa se ha eliminado con exito... \n";
                                 } else {
